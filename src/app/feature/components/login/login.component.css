@@ -1,0 +1,29 @@
+
+input[type='password'], input[type='email'] {
+    border-radius: 4px;
+    border: 1px solid #414042;
+    background-size: 15px 15px;
+    background-position: 11px 6px;
+    background-repeat: no-repeat;
+    background-position: 11px 6px;
+    height: 25px;
+    width: 200px;
+}
+
+
+input[type='password'] {
+   background-image: url("/assets/images/padlock.png");
+}
+
+input[type='email'] {
+   background-image: url("/assets/images/at.png");
+}
+
+.submit {
+ background-color: #414042;
+ border-radius:10px;
+ border: 1px solid #414042;
+ color: white;
+ text-align: center;
+ font-size: 13px;
+}
