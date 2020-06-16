@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   initForm() {
     this.createFormControls();
-    this.errorEmptyFields = "Can not be empty";
+    this.errorEmptyFields = "Can not be empty!";
     this.loginFormGroup = new FormGroup({
       email: this.email,
       password: this.password, 
@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.getFormFields();
+    console.log(this.email);
   }
   
 
