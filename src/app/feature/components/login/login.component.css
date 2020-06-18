@@ -30,8 +30,8 @@ input[type='email'] {
    margin-top: 15%;
    max-width: 596px;
    height: 300px;
-   border: 1px solid #9C9C9C;
    background-color: #EAEAEA;
+   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
  }
 
  .login-form {
@@ -42,3 +42,4 @@ input[type='email'] {
     color: #414042;
     margin-bottom: 5%;
  }
+
