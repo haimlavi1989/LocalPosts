@@ -10,6 +10,7 @@ import { MenuComponent } from './feature/components/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { CategoriesComponent } from './feature/components/posts/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
     LoginComponent,
     HeaderComponent,
     RegisterComponent,
-    MenuComponent
+    MenuComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

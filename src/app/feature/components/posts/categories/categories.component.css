@@ -1,0 +1,46 @@
+.categories {
+    padding: 3%;
+    color: white;
+}
+
+.categories .card {
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    border: none;
+}
+
+.categories .item .card:hover {
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5), 0 9px 26px 0 rgba(0, 0, 0, 0.30);
+}   
+
+.categories .card-body {
+    text-align: center;
+}
+
+.categories .card-img .card-img-top {
+    max-width: 60px;
+    margin: 0 auto;
+    transform: translate(0px, 70%);
+}
+
+.categories .card-img {
+    height: 150px;
+    text-align: center;
+}
+
+.categories .card-body {
+    background-color: #414042;
+    padding: 0.5rem;
+}
+
+.categories .card-title {
+    padding: 0px;
+    margin: 0px;
+}
+
+.move-up-effect {
+    transition: 0.3s;
+  }
+
+.move-up-effect:hover {
+    transform: translate(0, -10px);
+}
