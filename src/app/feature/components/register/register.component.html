@@ -1,1 +1,93 @@
-<p>register works!</p>
+<div class="register">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="register-box col-md-6 col-lg-4 animate__animated animate__bounceInDown">   
+          <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()" class="register-form">
+              <h3 class="text-center form-title">register</h3>
+              <div class="form-group row">
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" name="fullname" placeholder="Full name" formControlName="fullname">
+                    </div>
+
+                    <div class="feedback col-md-12">
+                        <small *ngIf="fullname.errors?.required && (fullname.dirty || fullname.touched)">
+                        {{ errorEmptyFields }} 
+                        </small>
+                        <small *ngIf="fullname.dirty && fullname.touched && fullname.invalid">
+                            invalid fullname!
+                        </small>
+                    </div>      
+              </div>    
+              <div class="form-group row">
+                  <div class="col-md-12">
+                      <input type="email" class="form-control" name="email" placeholder="Email" formControlName="email">
+                  </div>
+  
+                  <div class="feedback col-md-12">
+                      <small *ngIf="email.errors?.required && (email.dirty || email.touched)">
+                        {{ errorEmptyFields }} 
+                      </small>
+                      <small *ngIf="email.dirty && email.touched && email.invalid">
+                          invalid email!
+                      </small>
+                  </div>      
+              </div>
+  
+              <div class="form-group">
+                    <div class="row">
+                        <div class="col-6 col-md-6 pr-1">
+                            <input type="password" class="form-control" aria-describedby="passwordHelpInline" 
+                            placeholder="Password" name="password" formControlName="password">
+                        </div>
+                        <div class="col-6 col-md-6 pl-1">
+                        <input type="password" class="form-control" aria-describedby="confirmpasswordHelpInline" 
+                        placeholder="Confirm" name="confirmpass" formControlName="confirmpass">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="feedback col-md-6">
+                            <small *ngIf="password.errors?.required && (password.dirty || password.touched)">
+                                {{ errorEmptyFields }} 
+                            </small>
+                            <small *ngIf="password.invalid && password.dirty && password.touched">
+                                min length is 4
+                            </small>
+                        </div>
+                        <div class="feedback col-md-6">
+                            <small *ngIf="confirmpass.errors?.required && (confirmpass.dirty || confirmpass.touched)">
+                                {{ errorEmptyFields }} 
+                            </small>
+                            <small *ngIf="confirmpass.invalid && confirmpass.dirty && confirmpass.touched">
+                                min length is 4
+                            </small>
+                        </div>
+                    </div>    
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 pr-4">
+                        <input type="number"  class="col-6 col-md-6 form-control pr-4" name="age" placeholder="Age" min=18 max=120>
+                    </div>
+
+                    <div class="feedback col-md-12">
+                        <small *ngIf="age.errors?.required && (age.dirty || age.touched)">
+                        {{ errorEmptyFields }} 
+                        </small>
+                        <small *ngIf="age.dirty && age.touched && age.invalid">
+                            invalid age!
+                        </small>
+                    </div>      
+                </div> 
+          
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <button type="submit" class="submit btn btn-primary col-md-12" [disabled]="!registerFormGroup.valid">Register</button>
+                  </div>
+                </div>
+          </form>
+        </div>  
+      </div>      
+    </div>    
+  </div>
+  
