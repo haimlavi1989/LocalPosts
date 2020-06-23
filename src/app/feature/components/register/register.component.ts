@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   confirmpass: FormControl;
   age: FormControl;
   errorEmptyFields: string;
+  minlength4: string;
 
   constructor() { }
 
@@ -27,12 +28,13 @@ export class RegisterComponent implements OnInit {
     this.email = new FormControl(null, [Validators.required, Validators.email]);
     this.password = new FormControl(null, [Validators.required, Validators.minLength(4)]);
     this.confirmpass = new FormControl(null, [Validators.required, Validators.minLength(4), this.checkPasswords.bind(this)]);
-    this.age = new FormControl(null, [Validators.required, Validators.min(18), Validators.min(120)]);
+    this.age = new FormControl(null, [Validators.required, Validators.min(18), Validators.max(120)]);
   }
 
   initForm() {
     this.createFormControls();
     this.errorEmptyFields = "Can not be empty!";
+    this.minlength4 = "Min length is 4.";
     this.registerFormGroup = new FormGroup({
       fullname: this.fullname,
       email: this.email,
@@ -50,8 +52,7 @@ export class RegisterComponent implements OnInit {
   checkPasswords() { 
     let password = this.registerFormGroup?.get('password').value;
     let confirmPass = this.registerFormGroup?.get('confirmpass').value;
-
-    return password === confirmPass ? null : { notSame: true }     
+    return password === confirmPass ? null : { notSame: true };     
   }
 
   onSubmit() {

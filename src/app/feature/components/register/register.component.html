@@ -10,11 +10,8 @@
                     </div>
 
                     <div class="feedback col-md-12">
-                        <small *ngIf="fullname.errors?.required && (fullname.dirty || fullname.touched)">
-                        {{ errorEmptyFields }} 
-                        </small>
-                        <small *ngIf="fullname.dirty && fullname.touched && fullname.invalid">
-                            invalid fullname!
+                        <small *ngIf="(fullname.hasError('required') || fullname.hasError('minlength')) && (fullname.dirty || fullname.touched)">
+                            {{ minlength4 }}
                         </small>
                     </div>      
               </div>    
@@ -24,11 +21,11 @@
                   </div>
   
                   <div class="feedback col-md-12">
-                      <small *ngIf="email.errors?.required && (email.dirty || email.touched)">
+                      <small *ngIf="email.hasError('required') && (email.dirty || email.touched)">
                         {{ errorEmptyFields }} 
                       </small>
-                      <small *ngIf="email.dirty && email.touched && email.invalid">
-                          invalid email!
+                      <small *ngIf="email.hasError('email') && email.touched && email.invalid">
+                          invalid email format!
                       </small>
                   </div>      
               </div>
@@ -47,19 +44,13 @@
 
                     <div class="row">
                         <div class="feedback col-md-6">
-                            <small *ngIf="password.errors?.required && (password.dirty || password.touched)">
-                                {{ errorEmptyFields }} 
-                            </small>
-                            <small *ngIf="password.invalid && password.dirty && password.touched">
-                                min length is 4
+                            <small *ngIf="(password.hasError('required') || password.hasError('minlength')) && (password.dirty || password.touched)">
+                                {{ minlength4 }} 
                             </small>
                         </div>
                         <div class="feedback col-md-6">
-                            <small *ngIf="confirmpass.errors?.required && (confirmpass.dirty || confirmpass.touched)">
-                                {{ errorEmptyFields }} 
-                            </small>
-                            <small *ngIf="confirmpass.invalid && confirmpass.dirty && confirmpass.touched">
-                                min length is 4
+                            <small *ngIf="(confirmpass.hasError('notSame') || confirmpass.hasError('minlength')) && confirmpass.dirty && confirmpass.touched">
+                                No match! 
                             </small>
                         </div>
                     </div>    
@@ -67,15 +58,12 @@
 
                 <div class="form-group row">
                     <div class="col-md-12 pr-4">
-                        <input type="number"  class="col-6 col-md-6 form-control pr-4" name="age" 
-                        placeholder="Age" min=18 max=120>
+                        <input type="number" class="col-6 col-md-6 form-control pr-4" name="age" 
+                        placeholder="Age" min="18" max="120" formControlName="age">
                     </div>
 
                     <div class="feedback col-md-12">
-                        <small *ngIf="age.errors?.required && (age.dirty || age.touched)">
-                        {{ errorEmptyFields }} 
-                        </small>
-                        <small *ngIf="age.dirty && age.touched && age.invalid">
+                        <small *ngIf="(age.hasError('required') || age.hasError('min') || age.hasError('max')) && (age.dirty || age.touched)">
                             invalid age!
                         </small>
                     </div>      
