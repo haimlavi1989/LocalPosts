@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { CategoriesComponent } from './feature/components/posts/categories/categories.component';
+import { PostsonmapComponent } from './feature/components/posts/postsonmap/postsonmap.component';
+import { GoogleMapsModule } from '@angular/google-maps'
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { CategoriesComponent } from './feature/components/posts/categories/categ
     HeaderComponent,
     RegisterComponent,
     MenuComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    PostsonmapComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { CategoriesComponent } from './feature/components/posts/categories/categ
     ReactiveFormsModule,
     FormsModule,
     RecaptchaV3Module,
+    GoogleMapsModule
   ],
   providers: [{ provide: RECAPTCHA_V3_SITE_KEY, useValue: '6Lfa1qQZAAAAAJyfeDdC0X8j0rtP_rIRnFpvwcQX' }],
   bootstrap: [AppComponent]
