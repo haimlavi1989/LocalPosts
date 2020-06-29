@@ -13,3 +13,26 @@
     background-color: rgb(109,190,144);
     border-color: rgb(109,190,144);
 }
+
+.form-control:focus {
+    color: #495057;
+    background-color: white;
+    border-color: rgb(109,190,144);
+    box-shadow: 0 0 0 0.1rem rgb(109,190,144);
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+.hide {
+    display: none;
+}
+
+.grey-backgound {
+   background-color: #EAEAEA;
+}
+
+.box-shadow {
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}

@@ -12,7 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { CategoriesComponent } from './feature/components/posts/categories/categories.component';
 import { PostsonmapComponent } from './feature/components/posts/postsonmap/postsonmap.component';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { ShareComponent } from './feature/components/posts/share/share.component';
+import { PostsComponent } from './feature/components/posts/posts.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { GoogleMapsModule } from '@angular/google-maps'
     RegisterComponent,
     MenuComponent,
     CategoriesComponent,
-    PostsonmapComponent
+    PostsonmapComponent,
+    ShareComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,

@@ -4,12 +4,14 @@ import { LoginComponent } from './feature/components/login/login.component';
 import { RegisterComponent } from './feature/components/register/register.component';
 import { CategoriesComponent } from './feature/components/posts/categories/categories.component';
 import { PostsonmapComponent } from './feature/components/posts/postsonmap/postsonmap.component';
+import { PostsComponent } from './feature/components/posts/posts.component';
 
  const routes: Routes = [
   { path : 'login' , component : LoginComponent },
   { path : 'register' , component : RegisterComponent },
   { path : 'categories' , component : CategoriesComponent },
   { path : 'postsonmap' , component : PostsonmapComponent },
+  { path : 'posts' , component : PostsComponent },
   { path: '',   redirectTo: 'login', pathMatch: 'full' },
   ];
 
