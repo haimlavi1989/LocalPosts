@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  posts: string[];
+
+  constructor() { 
+    this.posts = [];
+  }
 
   ngOnInit(): void {
+    this.posts.push("");
+    this.posts.push("");
+    this.posts.push("");
+    this.posts.push("");
+    this.posts.push("");
+    this.posts.push("");
   }
 
 }

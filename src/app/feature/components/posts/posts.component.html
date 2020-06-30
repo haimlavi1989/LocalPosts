@@ -1,2 +1,29 @@
 <app-share></app-share>
-<p>posts works!</p>
+
+<div class="posts">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+                <div class="card col-md-7 box-shadow mb-4" *ngFor="let post of posts">
+                    <div class="row text-center">
+                        <div class="card-header col-md-12 p-0">
+                            <img src="/assets/images/pushpin_icon.png" alt="pushpin_icon">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card-image col-md-2 text-center">
+                            <img src="/assets/images/icon_only_150.png" alt="Card image">
+                        </div>
+                        <div class="card-body col-md-10">
+                            <h4 class="card-title">Primary card title</h4>
+                            <p class="card-text">Some example text. Some example text.</p>
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>  
+                    </div>
+                </div>    
+        </div>                
+    </div>
+</div>
+
+ 
