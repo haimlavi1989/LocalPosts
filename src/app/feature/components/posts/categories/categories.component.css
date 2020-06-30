@@ -25,6 +25,7 @@
 .categories .card-img {
     height: 150px;
     text-align: center;
+    border: 2px solid rgb(109,190,144);
 }
 
 .categories .card-body {
@@ -37,11 +38,8 @@
     margin: 0px;
 }
 
-.move-up-effect {
-    transition: 0.3s;
-  }
-
-.move-up-effect:hover {
-    transform: translate(0, -10px);
+.categories .item .card.move-up-effect:hover img {
+    transition: 0.9s;
+    transform: translate(0, 30px);
 }
 

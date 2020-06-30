@@ -1,12 +1,15 @@
 <div class="categories container">
     <div class="row">
             <div class="item col-sm-4 col-md-3" *ngFor="let categorie of categories">
-                <div class = "card mb-4 animate__animated animate__backInLeft">
-                    <div class="card-img animate__animated animate__rubberBand animate__delay-1s move-up-effect">
-                        <img src="/assets/images/{{ categorie.img }}" class="card-img-top" alt="{{ categorie.title }}">
+                <div class = "card mb-4 animate__animated animate__backInLeft move-up-effect">
+                    <div class="card-img">
+                            <img src="/assets/images/{{ categorie.img }}" class="card-img-top" 
+                            alt="{{ categorie.title }}">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title animate__animated animate__backInRight animate__delay-1s">{{ categorie.title }}</h5>
+                        <h5 class="card-title animate__animated animate__backInRight animate__delay-1s">
+                            {{ categorie.title }}
+                        </h5>
                     </div>    
                  </div>
             </div>
