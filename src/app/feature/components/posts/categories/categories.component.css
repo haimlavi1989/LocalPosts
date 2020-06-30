@@ -43,3 +43,13 @@
     transform: translate(0, 30px);
 }
 
+.categories a:hover {
+    color: rgb(109,190,144);
+    text-decoration: none;
+}
+
+.categories a {
+    color:#fff;
+    text-decoration: none;
+    background-color: transparent;
+}
