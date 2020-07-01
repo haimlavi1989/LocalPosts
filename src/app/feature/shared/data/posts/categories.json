@@ -34,7 +34,14 @@
       "id": 7,
       "title": "Partners",
       "img": "partners.png"
+    },
+
+    {
+      "id": 8,
+      "title": "Ask for advice",
+      "img": "ask_qusteen_icon.png"
     }
+
   ]   
   
   

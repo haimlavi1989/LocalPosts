@@ -1,10 +1,8 @@
 .card-image img {
     width: 90px;
     height: 90px;
-    border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 6px;
-    margin-top: 6px;
-    padding: 3px;
+    margin-top: 24px;
 }
 
 .card-header img {
