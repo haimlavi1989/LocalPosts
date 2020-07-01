@@ -1,0 +1,34 @@
+[
+
+    {  
+      "title": "Rent",
+      "img": "rent.png"
+    },
+    {   
+      "title": "Sale",
+      "img": "sale.png"
+    },
+    {   
+      "title": "Share knolage",
+      "img": "share_knowledge_icon.png"
+    },
+    {
+      "title": "Handing",
+      "img": "handing_icon.png"
+    },
+    {
+      "title": "Dating",
+      "img": "dating.png"
+    },
+    {
+      "title": "Lost",
+      "img": "lost.png"
+    },
+    {
+      "title": "Partners",
+      "img": "partners.png"
+    }
+  ]   
+  
+  
+  
