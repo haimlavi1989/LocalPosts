@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Categories } from './../../../shared/Posts/Categories';
+import { CategoriesService } from './../../../services/categories/categories.service';
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-share',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShareComponent implements OnInit {
 
-  constructor() { }
+  categories: Categories[];
+  selectedCatId: number;
+
+  constructor(private _categoriesService: CategoriesService,
+    private route: ActivatedRoute ) { 
+    this.categories = [];
+  }
 
   ngOnInit(): void {
+
+    this.route.params.subscribe(params => {
+      this.selectedCatId = +params['id'];
+    });
+
+    this.categories = this._categoriesService.getCategories();    
   }
 
 }

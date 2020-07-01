@@ -1,5 +1,5 @@
 export class Categories {
    
-    constructor(public title: string, public img: string){}
+    constructor(public id: number, public title: string, public img: string){}
  
  }

@@ -7,12 +7,13 @@ import { PostsonmapComponent } from './feature/components/posts/postsonmap/posts
 import { PostsComponent } from './feature/components/posts/posts.component';
 
  const routes: Routes = [
-  { path : 'login' , component : LoginComponent },
-  { path : 'register' , component : RegisterComponent },
-  { path : 'categories' , component : CategoriesComponent },
-  { path : 'postsonmap' , component : PostsonmapComponent },
-  { path : 'posts' , component : PostsComponent },
-  { path: '',   redirectTo: 'login', pathMatch: 'full' },
+  { path : 'login', component : LoginComponent },
+  { path : 'register', component : RegisterComponent },
+  { path : 'categories', component : CategoriesComponent },
+  { path : 'postsonmap', component : PostsonmapComponent },
+  { path : 'posts', component : PostsComponent },
+  { path : 'posts/:id', component : PostsComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   ];
 
 @NgModule({

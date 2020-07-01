@@ -36,7 +36,10 @@
                                 <div class="row col-10 col-sm-10 col-md-10">
                                     <div class="col-7 col-sm-7 col-md-7 col-lg-6">
                                         <select class="form-control">
-                                            <option>Default select</option>
+                                            <option *ngFor="let categorie of categories" [value]="categorie.id"
+                                              [attr.selected]="selectedCatId === categorie.id ? true : null">
+                                                {{ categorie.title }}
+                                            </option>
                                         </select>
                                     </div>
         
