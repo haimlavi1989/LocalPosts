@@ -8,12 +8,15 @@ import categories from '../../shared/data/posts/categories.json';
 })
 export class CategoriesService {
 
-  private _url: string = "";
+  private url: string = "";
+  private categories: Categorie[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.categories = categories;
+  }
 
   getCategories() {
-     return categories;
+     return categories.slice();
   }
 
 }
