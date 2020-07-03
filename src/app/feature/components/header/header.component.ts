@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  mobileButton: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  clickEvent(){
+      this.mobileButton = !this.mobileButton;       
   }
 
 }
