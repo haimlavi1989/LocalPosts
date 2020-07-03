@@ -14,6 +14,6 @@ export class PostsService {
   }
 
   getPosts() {
-    return posts;
+    return posts.slice();
   }
 }
