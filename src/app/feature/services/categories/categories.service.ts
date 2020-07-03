@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Categories } from './../../shared/Posts/Categories';
+import { Categorie } from '../../shared/Posts/Categorie';
 import categories from '../../shared/data/posts/categories.json';
 
 @Injectable({

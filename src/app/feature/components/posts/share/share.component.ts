@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Categories } from './../../../shared/Posts/Categories';
+import { Categorie } from '../../../shared/Posts/Categorie';
 import { CategoriesService } from './../../../services/categories/categories.service';
 import { ActivatedRoute } from '@angular/router'
 
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class ShareComponent implements OnInit {
 
-  categories: Categories[];
+  categories: Categorie[];
   selectedCatId: number;
 
   constructor(private _categoriesService: CategoriesService,

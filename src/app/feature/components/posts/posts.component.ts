@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Posts } from './../../../feature/shared/Posts/posts';
+import { Post } from '../../shared/Posts/post';
 import { PostsService } from './../../services/posts/posts.service';
 
 @Component({
@@ -9,24 +9,16 @@ import { PostsService } from './../../services/posts/posts.service';
 })
 export class PostsComponent implements OnInit {
 
-  posts: Posts[];
+  posts: Post[];
   defulPhoto: string;
 
-  constructor( private _postServece: PostsService) { 
+  constructor(private postServece: PostsService) { 
     this.posts = [];
     this.defulPhoto = "/assets/images/icon_only_150.png";
   }
 
   ngOnInit(): void {
-    this.posts = this._postServece.getPosts()
-    /*
-    this.posts.push("");
-    this.posts.push("");
-    this.posts.push("");
-    this.posts.push("");
-    this.posts.push("");
-    this.posts.push("");
-    */
+    this.posts = this.postServece.getPosts();
   }
 
 }

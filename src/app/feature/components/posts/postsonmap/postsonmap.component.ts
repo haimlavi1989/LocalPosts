@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
+import { PostsService } from './../../../services/posts/posts.service';
+import { Post } from '../../../shared/Posts/Post';
+
 
 @Component({
   selector: 'app-postsonmap',
@@ -10,36 +13,48 @@ export class PostsonmapComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
 
-  zoom = 12;
+  posts: Post[];
+  markers: any[];
+  infoContent: string;
+  zoom: number;
   center: google.maps.LatLngLiteral;
-  options: google.maps.MapOptions = {
-    zoomControl: false,
-    scrollwheel: false,
-    disableDoubleClickZoom: true,
-    mapTypeId: 'roadmap',
-    maxZoom: 15,
-    minZoom: 8,
-  };
-  markers = [];
-  infoContent = '';
-  customIcon = {
-    url: "/assets/images/icon_only_150.png",
-    scaledSize: {height: 30, width: 30},
-  };
+  options: google.maps.MapOptions;
 
-  constructor() {
+  constructor(private postServece: PostsService) {
   }
 
   ngOnInit() {
+
+    this.initGoogleMapsParms();
+
+    this.posts = this.postServece.getPosts();
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
-        this.addMarker();
       })
+
+      this.posts.forEach(post => {
+        this.addMarker(post);
+      });
     }  
+  }
+
+  initGoogleMapsParms() {
+    this.markers = [];
+    this.infoContent = '';
+    this.zoom = 12;
+    this.options = {
+      zoomControl: false,
+      scrollwheel: false,
+      disableDoubleClickZoom: true,
+      mapTypeId: 'roadmap',
+      maxZoom: 15,
+      minZoom: 8
+    };
   }
 
   zoomIn() {
@@ -50,6 +65,17 @@ export class PostsonmapComponent implements OnInit {
     if (this.zoom > this.options.minZoom) this.zoom--
   }
 
+  customIcon(photo: string) {
+    let photoUrl: string = "/assets/images/icon_only_150.png";
+    if (photo) {
+      photoUrl = photo;
+    }
+    return {
+      url: photoUrl,
+      scaledSize: {height: 30, width: 30},
+    };
+  }
+ 
   click(event: google.maps.MouseEvent) {
     console.log(event)
   }
@@ -58,20 +84,20 @@ export class PostsonmapComponent implements OnInit {
     console.log(JSON.stringify(this.map.getCenter()))
   }
 
-  addMarker() {
+  addMarker(post: Post) {
     this.markers.push({
       position: {
-        lat: this.center.lat,
-        lng: this.center.lng,
+        lat: post.location.lat, 
+        lng: post.location.lng,
       },
       label: {
         color: 'red',
-        text: 'post ' + (this.markers.length + 1),
+        text: post.title,
       },
-      info: 'Post info ' + (this.markers.length + 1),
+      info: post.text,
       options: {
         animation: google.maps.Animation.BOUNCE,
-        icon: this.customIcon
+        icon: this.customIcon(post.photo)
       },
     })
   }
