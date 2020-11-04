@@ -1,6 +1,6 @@
 <div class="share">
    <div class="container mt-3">
-           <form>
+           <form [formGroup]="sharePostFormGroup" (ngSubmit)="onSubmit()">
                 <div class="row justify-content-center">
                     <div class="share-box col-md-7 grey-backgound box-shadow animate__animated animate__lightSpeedInRight">
                         <div class="form-group">
@@ -9,7 +9,8 @@
                                     <img src="/assets/images/user_icon.png" alt="" class="rounded-circle">
                                 </div>
                                 <div class="col-9 col-sm-10 col-md-10 arrow-label-one arrow-label-two">
-                                    <textarea class="form-control" placeholder="whats new?" rows="3"></textarea>
+                                    <textarea class="form-control" placeholder="whats new?" rows="3"
+                                     formControlName="postMessage" name="postMessage"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -20,7 +21,8 @@
                                    <span class="add-content-title">Add:</span>
                                 </div>
                                 <div class="col-10 col-sm-10 col-md-10">
-                                    <input type="file" class="hide" accept="image/*" #imageupload>
+                                    <input type="file" class="hide" accept="image/*" #imageupload
+                                    formControlName="PostImage" name="PostImage">
                                     <button type="button" class="btn" (click)="imageupload.click()">
                                         <img src="/assets/images/photo_icon.png" class="image-upload ml-1 mr-1"> Photo
                                     </button>
@@ -35,16 +37,15 @@
                                 </div>
                                 <div class="row col-10 col-sm-10 col-md-10">
                                     <div class="col-7 col-sm-7 col-md-7 col-lg-6">
-                                        <select class="form-control">
-                                            <option *ngFor="let categorie of categories" [value]="categorie.id"
-                                              [attr.selected]="selectedCatId === categorie.id ? true : null">
+                                        <select class="form-control" formControlName="PostCategorie" name="PostCategorie">
+                                            <option *ngFor="let categorie of categories" [value]="categorie.id">
                                                 {{ categorie.title }}
                                             </option>
                                         </select>
                                     </div>
         
                                     <div class="col-3 col-sm-3 col-md-3 col-lg-4">
-                                        <button type="button" class="btn btn-green pl-sm-5 pr-sm-5">
+                                        <button type="submit" class="btn btn-green pl-sm-5 pr-sm-5" [disabled]="!sharePostFormGroup.valid">
                                             Share
                                         </button>
                                     </div>

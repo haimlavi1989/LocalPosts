@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
-import { PostsService } from './../../../services/posts/posts.service';
-import { Post } from '../../../shared/Posts/Post';
+import { PostsService } from './../../services/posts/posts.service';
+import { Post } from '../../shared/Posts/Post';
 
 
 @Component({
