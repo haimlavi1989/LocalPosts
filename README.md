@@ -2,9 +2,9 @@
 See all users posts around your location. `(site is under construction)`.
 Built using modern technologies: `Angular`, `Bootstrap`
 
-## Demo API
+## Demo application
 
-The API is served at **https://localposts.web.app/**
+The application is served at **https://localposts.web.app/**
 
 ## Installation and Running the App
 
