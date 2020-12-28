@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
 import { PostsService } from './../../services/posts/posts.service';
 import { Post } from '../../shared/Posts/Post';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -13,21 +14,24 @@ export class PostsonmapComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
 
-  posts: Post[];
+  posts: Post[] = [];
   markers: any[];
   infoContent: string;
   zoom: number;
   center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions;
+  defulPhoto: string;
+  backEndUrl: string;
+
 
   constructor(private postServece: PostsService) {
+    this.backEndUrl = environment.backEndUrl;
+    this.defulPhoto = "/assets/images/icon_only_150.png";
   }
 
   ngOnInit() {
 
     this.initGoogleMapsParms();
-
-    this.posts = this.postServece.getPosts();
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -35,12 +39,24 @@ export class PostsonmapComponent implements OnInit {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
+        this.getNearbyPosts();
       })
-
-      this.posts.forEach(post => {
-        this.addMarker(post);
-      });
     }  
+
+  }
+
+  getNearbyPosts() {
+    this.postServece.getPosts(1000, [this.center.lat, this.center.lng], 'km').subscribe(
+      response => {
+        this.posts = response.data.data;
+        this.addMarkers(); 
+      })
+  }
+
+  addMarkers() {
+    this.posts.forEach(post => {
+      this.addMarker(post);
+    });
   }
 
   initGoogleMapsParms() {
@@ -52,7 +68,7 @@ export class PostsonmapComponent implements OnInit {
       scrollwheel: false,
       disableDoubleClickZoom: true,
       mapTypeId: 'roadmap',
-      maxZoom: 15,
+      maxZoom: 30,
       minZoom: 8
     };
   }
@@ -66,10 +82,9 @@ export class PostsonmapComponent implements OnInit {
   }
 
   customIcon(photo: string) {
-    let photoUrl: string = "/assets/images/icon_only_150.png";
-    if (photo) {
-      photoUrl = photo;
-    }
+    let photoUrl: string;
+    photoUrl = photo ? this.backEndUrl+photo : this.defulPhoto
+
     return {
       url: photoUrl,
       scaledSize: {height: 30, width: 30},
@@ -87,17 +102,17 @@ export class PostsonmapComponent implements OnInit {
   addMarker(post: Post) {
     this.markers.push({
       position: {
-        lat: post.location.lat, 
-        lng: post.location.lng,
+        lat: post.location.coordinates[0]*1, 
+        lng: post.location.coordinates[1]*1,
       },
       label: {
         color: 'red',
-        text: post.title,
+        text: post.subject,
       },
-      info: post.text,
+      info: post.description,
       options: {
         animation: google.maps.Animation.BOUNCE,
-        icon: this.customIcon(post.photo)
+        icon: this.customIcon(post.imageCover)
       },
     })
   }
