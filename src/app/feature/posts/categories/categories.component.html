@@ -1,7 +1,7 @@
 <div class="categories container">
     <div class="row">
             <div class="item col-sm-4 col-md-3" *ngFor="let categorie of categories">
-                <a [routerLink]="[ '/posts', categorie.id]">
+                <a [routerLink]="[ '/posts', categorie.title]"> 
                     <div class = "card mb-4 animate__animated animate__backInLeft move-up-effect">
                         <div class="card-img">
                                 <img src="/assets/images/{{ categorie.img }}" class="card-img-top" 
