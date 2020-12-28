@@ -16,6 +16,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { ShareComponent } from './feature/posts/share/share.component';
 import { PostsComponent } from './feature/posts/posts.component'
 import { AuthInterceptor } from "./feature/auth/auth-interceptor";
+import { SharedModule } from './feature/shared/shared.module';
+import { environment } from '../environments/environment';
+import { AuthService } from './feature/auth/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +31,7 @@ import { AuthInterceptor } from "./feature/auth/auth-interceptor";
     CategoriesComponent,
     PostsonmapComponent,
     ShareComponent,
-    PostsComponent
+    PostsComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,11 +40,13 @@ import { AuthInterceptor } from "./feature/auth/auth-interceptor";
     ReactiveFormsModule,
     FormsModule,
     RecaptchaV3Module,
-    GoogleMapsModule
+    GoogleMapsModule,
+    SharedModule
   ],
   providers: [
-    { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6Lfa1qQZAAAAAJyfeDdC0X8j0rtP_rIRnFpvwcQX' },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: environment.recaptcha_key },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
