@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { signupData } from "../auth/auth-data.model";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +19,7 @@ export class RegisterComponent implements OnInit {
   errorEmptyFields: string;
   minlength4: string;
 
-  constructor() { }
+  constructor( private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -44,11 +46,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  getFormFields() {
-    this.email = this.registerFormGroup.get('email').value;
-    this.password = this.registerFormGroup.get('password').value;
-  }
-
   checkPasswords() { 
     let password = this.registerFormGroup?.get('password').value;
     let confirmPass = this.registerFormGroup?.get('confirmpass').value;
@@ -56,8 +53,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.getFormFields();
-    console.log(this.email);
+
+    const data: signupData = {name: '', email: '', password: '', passwordConfirm: '', age: 0};
+    data.name = this.registerFormGroup.get('fullname').value;
+    data.email = this.registerFormGroup.get('email').value;
+    data.password = this.registerFormGroup.get('password').value;
+    data.passwordConfirm = this.registerFormGroup.get('confirmpass').value;
+    data.age = this.registerFormGroup.get('age').value;
+
+    this.authService.signup(data);
   }
   
 

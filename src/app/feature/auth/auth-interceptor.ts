@@ -12,11 +12,11 @@ import {
   
     intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-      const authToken = localStorage.getItem("token");
+      const currentUser = JSON.parse(localStorage.getItem('currentUser')) ;
       
-      if (authToken) {
+      if (currentUser) {
         const cloned  = req.clone({
-          headers: req.headers.set("Authorization", "Bearer " + authToken)
+          headers: req.headers.set("Authorization", "Bearer " + currentUser.token)
         });
 
         return next.handle(cloned);

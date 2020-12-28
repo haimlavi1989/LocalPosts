@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../auth/auth.service';
+import { loginData } from "../auth/auth-data.model";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthService]
 })
 export class LoginComponent implements OnInit {
-  loginFormGroup: FormGroup;
-  email: FormControl;
-  password: FormControl;
-  errorEmptyFields: string;
+  public loginFormGroup: FormGroup;
+  public email: FormControl;
+  public password: FormControl;
+  public errorEmptyFields: string;
+  public isLoading: boolean = false;
 
   constructor(private authService:AuthService) { }
 
@@ -35,11 +36,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(
-      this.loginFormGroup.get('email').value,
-      this.loginFormGroup.get('password').value
-    );
+    this.isLoading = true;
+    const data: loginData = {email: '', password: ''};
+    data.email = this.loginFormGroup.get('email').value
+    data.password = this.loginFormGroup.get('password').value
+    this.authService.login(data.email, data.password);
   }
   
-
 }
