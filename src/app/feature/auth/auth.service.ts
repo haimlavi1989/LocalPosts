@@ -9,9 +9,10 @@ import { Router } from "@angular/router";
 export class AuthService {
     private currentUserSubject: BehaviorSubject<authData.userData>;
     public currentUser: Observable<authData.userData>;
+    private tokenExpirationTimer: any;
 
     constructor(private http: HttpClient, private router: Router) {
-        this.currentUserSubject = new BehaviorSubject<authData.userData>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUserSubject = new BehaviorSubject<authData.userData>(null);
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -24,9 +25,10 @@ export class AuthService {
         .subscribe(
             response => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+                response["tokenDate"] = new Date();
                 localStorage.setItem('currentUser', JSON.stringify(response));
-                this.currentUserSubject.next(response);
-                this.router.navigate(["/postsonmap"]);
+                this.handleAuthentication();
+                this.router.navigate(["/categories"]);
             });
     }
 
@@ -34,14 +36,53 @@ export class AuthService {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+        this.router.navigate(["/login"]);
+        if (this.tokenExpirationTimer) {
+          clearTimeout(this.tokenExpirationTimer);
+        }
+          this.tokenExpirationTimer = null;
     }
+
+    private setLogoutTimer(expirationDuration: number) {
+      if (!this.tokenExpirationTimer) {
+          this.tokenExpirationTimer = setTimeout(() => {
+            this.logout();
+         }, expirationDuration);
+      }
+    }  
 
     signup(data: authData.signupData) {
         this.http
           .post(`${environment.apiUrl}users/signup`, data)
           .subscribe(response => {
-            console.log(response);
           });
-      }
+    }
+
+    // on each application startup check if user is authenticated 
+    handleAuthentication() {
+
+      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+          // check token token expiration date
+          const tokenTimeLift = this.tokenTimeLift(currentUser)
+          if ( tokenTimeLift > 0 ){
+            // notify all subsibers that user is auth  
+            this.currentUserSubject.next(currentUser);
+            // active auto logout timer
+            this.setLogoutTimer(tokenTimeLift);
+          }
+        } else {
+
+        }
+        
+    }
+
+    // return time left for token in miliseconds
+    tokenTimeLift(currentUser) {
+      const expirationDate = new Date(new Date(currentUser.tokenDate).getTime() + currentUser.expiresIn * 1000).getTime();
+      const now = new Date().getTime();
+      return (expirationDate - now);
+    }
+
     
 }
