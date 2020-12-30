@@ -59,6 +59,8 @@ export class PostsonmapComponent implements OnInit {
     });
   }
 
+  click(event: google.maps.MouseEvent) {}
+
   initGoogleMapsParms() {
     this.markers = [];
     this.infoContent = '';
@@ -91,14 +93,6 @@ export class PostsonmapComponent implements OnInit {
     };
   }
  
-  click(event: google.maps.MouseEvent) {
-    console.log(event)
-  }
-
-  logCenter() {
-    console.log(JSON.stringify(this.map.getCenter()))
-  }
-
   addMarker(post: Post) {
     this.markers.push({
       position: {

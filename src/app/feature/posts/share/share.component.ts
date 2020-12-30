@@ -37,7 +37,6 @@ export class ShareComponent implements OnInit {
     this.getUserLocation();
 
     this.selectedSubject = this.activatedRoute.snapshot.params.subjectName;
-    console.log(this.selectedSubject)
 
     this.categories = this._categoriesService.getCategories();    
     this.initForm();
@@ -45,7 +44,6 @@ export class ShareComponent implements OnInit {
 
   getUserLocation() {
     if (navigator.geolocation) {
-      console.log("geolocation");
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {
           lat: position.coords.latitude,

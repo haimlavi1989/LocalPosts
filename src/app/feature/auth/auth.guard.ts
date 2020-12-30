@@ -23,7 +23,6 @@ import {
 
       const currentUser = this.authService.currentUserValue;
 
-      console.log(currentUser, "aut guard")
       if (currentUser) {
           // logged in so return true
           return true;
