@@ -12,14 +12,10 @@ import { environment } from '../../../environments/environment';
 export class PostsComponent implements OnInit {
 
   posts: Post[];
-  defulPhoto: string;
-  backEndUrl: string;
   center: google.maps.LatLngLiteral;
   
   constructor(private postServece: PostsService) { 
     this.posts = [];
-    this.backEndUrl = environment.backEndUrl;
-    this.defulPhoto = "/assets/images/icon_only_150.png";
   }
 
   ngOnInit(): void {

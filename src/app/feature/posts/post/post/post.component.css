@@ -1,0 +1,11 @@
+.card-image img {
+  width: 90px;
+  height: 90px;
+  border-radius: 6px;
+  margin-top: 24px;
+}
+
+.card-header img {
+  width: 35px;
+  height: 35px;
+}

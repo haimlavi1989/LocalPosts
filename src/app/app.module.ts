@@ -19,6 +19,7 @@ import { AuthInterceptor } from "./feature/auth/auth-interceptor";
 import { SharedModule } from './feature/shared/shared.module';
 import { environment } from '../environments/environment';
 import { AuthService } from './feature/auth/auth.service';
+import { PostComponent } from './feature/posts/post/post/post.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AuthService } from './feature/auth/auth.service';
     PostsonmapComponent,
     ShareComponent,
     PostsComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
