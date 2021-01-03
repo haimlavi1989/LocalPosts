@@ -11,7 +11,6 @@ export class PostsService {
 
   private posts: Post[];
   private unit: string = 'km';
-  pridistances
 
   constructor(private http: HttpClient) {
     this.posts = posts;
@@ -29,9 +28,6 @@ export class PostsService {
   }
 
   addNewPost(data) {
-    this.http
-      .post(`${environment.apiUrl}posts`, data)
-      .subscribe(response => {
-      });
+    return this.http.post(`${environment.apiUrl}posts`, data);
   }
 }

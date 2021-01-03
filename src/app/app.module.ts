@@ -20,6 +20,7 @@ import { SharedModule } from './feature/shared/shared.module';
 import { environment } from '../environments/environment';
 import { AuthService } from './feature/auth/auth.service';
 import { PostComponent } from './feature/posts/post/post/post.component';
+import { ErrorInterceptor } from './feature/erorrs/error-interceptor';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { PostComponent } from './feature/posts/post/post/post.component';
   providers: [
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: environment.recaptcha_key },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthService
   ],
   bootstrap: [AppComponent]

@@ -3,7 +3,7 @@ import { Categorie } from '../../shared/Posts/Categorie';
 import { CategoriesService } from './../../services/categories/categories.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { photoType } from "../../shared/Posts/validators/photo-type.validator"
+import { photoType } from "../../shared/validators/photo-type.validator"
 import { PostsService } from './../../services/posts/posts.service';
 import { shareData } from './share-data.model';
 
@@ -22,7 +22,7 @@ export class ShareComponent implements OnInit {
   errorEmptyFields: string;
   minlength12: string;
   center: google.maps.LatLngLiteral;
-  public isLoading: boolean = false;
+  public isLoadingShare: boolean = false;
   selectedSubject: string;
 
   constructor(private _categoriesService: CategoriesService,
@@ -33,11 +33,8 @@ export class ShareComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.getUserLocation();
-
     this.selectedSubject = this.activatedRoute.snapshot.params.subjectName;
-
     this.categories = this._categoriesService.getCategories();    
     this.initForm();
   }
@@ -55,7 +52,7 @@ export class ShareComponent implements OnInit {
 
   createFormControls() {
     this.postMessage = new FormControl(null, [Validators.required, Validators.minLength(12)]);
-    this.postImage = new FormControl(null, []);
+    this.postImage = new FormControl(null, {asyncValidators: []});
     this.postCategorie = new FormControl( this.selectedSubject ? this.selectedSubject : this.categories[0].title, []);;
   }
 
@@ -80,7 +77,7 @@ export class ShareComponent implements OnInit {
 
   onSubmit() {
 
-    this.isLoading = true;
+    this.isLoadingShare = true;
     const data: shareData = {subject: '', description: '', location: { "type": "Point", "coordinates": [0, 0] }, file: null};
     data.subject = this.sharePostFormGroup.get('postCategorie').value;
     data.description = this.sharePostFormGroup.get('postMessage').value;
@@ -93,7 +90,12 @@ export class ShareComponent implements OnInit {
     postData.append("location", JSON.stringify(data.location));
     postData.append("file", data.file);
 
-    this.postsService.addNewPost(postData);
+    this.postsService.addNewPost(postData).subscribe(
+      response => {
+        this.isLoadingShare = false;
+    }, error => {
+        this.isLoadingShare = false;
+    });
   }
 
 }

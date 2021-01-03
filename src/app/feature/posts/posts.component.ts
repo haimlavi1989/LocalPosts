@@ -13,6 +13,7 @@ export class PostsComponent implements OnInit {
 
   posts: Post[];
   center: google.maps.LatLngLiteral;
+  public isLoadingPosts: boolean = false;
   
   constructor(private postServece: PostsService) { 
     this.posts = [];
@@ -23,9 +24,13 @@ export class PostsComponent implements OnInit {
   }
 
   getNearbyPosts() {
+    this.isLoadingPosts = true;
     this.postServece.getPosts(1000, [this.center.lat, this.center.lng], 'km').subscribe(
       response => {
         this.posts = response.data.data;
+        this.isLoadingPosts = false;
+      }, error => {
+        this.isLoadingPosts = false;
       })
   }
 
