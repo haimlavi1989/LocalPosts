@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import posts from '../../shared/data/posts/posts.json';
-import { Post } from '../../shared/Posts/post';
+import posts from '../../data/posts/posts.json';
+import { Post } from './../../models/Post';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

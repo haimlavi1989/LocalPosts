@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Post } from '../../../shared/Posts/post';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Post } from '../../../shared/models/post';
 import { environment } from '../../../../../environments/environment';
 
 @Component({
@@ -10,6 +10,7 @@ import { environment } from '../../../../../environments/environment';
 export class PostComponent implements OnInit {
 
   @Input('post') post: Post;
+
   defulPhoto: string;
   backEndUrl: string;
 
@@ -20,5 +21,11 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  moreDetailsClick() {
+    this.post
+  }
+
+
 
 }

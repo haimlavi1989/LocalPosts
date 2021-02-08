@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Categorie } from '../../shared/Posts/Categorie';
-import { CategoriesService } from './../../services/categories/categories.service';
+import { Categorie } from '../../shared/models/Categorie';
+import { CategoriesService } from './../../../feature/shared/services/categories/categories.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { photoType } from "../../shared/validators/photo-type.validator"
-import { PostsService } from './../../services/posts/posts.service';
+import { PostsService } from './../../../feature/shared/services/posts/posts.service';
 import { shareData } from './share-data.model';
 
 @Component({
