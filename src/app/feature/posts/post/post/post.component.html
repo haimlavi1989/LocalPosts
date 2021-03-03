@@ -12,20 +12,42 @@
         </div>
         <div class="card-body col-md-7 col-lg-10">
             <h4 class="card-title">{{ post.subject }}</h4>
-            <p class="card-text">{{ post.description }}</p>
-            <a routerLink="/postdetail" (click)='moreDetailsClick()' class="card-link">More</a>
+            <p class="card-text">{{ post.description | summary: 30 }}</p>
+            <a (click)="handleMoreDetails(post)" class="card-link">More</a>
         </div>  
     </div>
     
     <div class="row card-footer">
-        <div class="col-6 col-sm-4 offset-sm-2">
-            <small class="text-muted">{{ post.publishDate }}</small>
+        <div class="col-6 col-sm-3 text-center action-button icon-effect no-select"
+            (click)="handelLike()" [ngClass]="{'active' : post.currentUserLike.length > 0 }">
+            <fa-icon [icon]="faThumbsUp" 
+              [ngStyle]="{'color' : post.currentUserLike.length > 0 ? '#343a40' : '#6dbe90' }">
+            </fa-icon>
+            <small class="text-muted">
+                 Like (<span>{{ post.numberOfLikes }}</span>)
+            </small>
         </div>
     
-        <div class="col-6 col-sm-4 offset-sm-2">
-            <small class="text-muted">{{ post.distance }}</small>
+        <div class="col-6 col-sm-3 text-center action-button icon-effect no-select" 
+           (click)="handelComments()" [ngClass]="{'active' : showComments}">
+            <fa-icon [icon]="faComments"
+              [ngStyle]="{'color' : showComments ? '#343a40' : '#6dbe90' }">
+            </fa-icon>
+            <small class="text-muted"> 
+                Commint (<span>{{ post.numberOfComments }}</span>) 
+            </small>
+        </div>  
+
+        <div class="col-6 col-sm-3 text-center">
+            <fa-icon [icon]="faCalendar" style="color:#6dbe90"></fa-icon> 
+            <small class="text-muted"> {{ post.publishDate | date: 'd/M/yy, h:mm a' }} </small>
+        </div>
+    
+        <div class="col-6 col-sm-3 text-center">
+            <fa-icon [icon]="faMapMarkerAlt" style="color:#6dbe90"></fa-icon>
+            <small class="text-muted"> {{ post.distance | distance }} </small>
         </div>  
     </div>
 </div>
-
+<app-comments [commentEvent]="commentEvent" [postId]="post.id"></app-comments>
 

@@ -9,3 +9,22 @@
   width: 35px;
   height: 35px;
 }
+
+.action-button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.icon-effect:hover {
+  -ms-transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+.active {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgb(172, 29, 34);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}

@@ -6,6 +6,7 @@ import { CategoriesComponent } from './feature/posts/categories/categories.compo
 import { PostsonmapComponent } from './feature/posts/postsonmap/postsonmap.component';
 import { PostsComponent } from './feature/posts/posts.component';
 import { AuthGuard } from "./feature/auth/auth.guard";
+import { DetailComponent } from './feature/posts/detail/detail.component'; 
 
  const routes: Routes = [
   { path : 'login', component : LoginComponent },
@@ -14,6 +15,7 @@ import { AuthGuard } from "./feature/auth/auth.guard";
   { path : 'postsonmap', component : PostsonmapComponent, canActivate: [AuthGuard]},
   { path : 'posts', component : PostsComponent },
   { path : 'posts/:subjectName', component : PostsComponent },
+  { path : 'postdetail/:id', component : DetailComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: 'register', pathMatch: 'full' },
   ];
 

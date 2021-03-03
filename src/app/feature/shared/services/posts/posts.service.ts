@@ -16,10 +16,6 @@ export class PostsService {
     this.posts = posts;
   }
 
-/*   getPosts() {
-    return posts.slice();
-  } */
-
   getPosts(distance: number, coordinates:[number, number], unit: string) {
     return this.http.get<any>(`
     ${environment.apiUrl}posts/distances/${distance}/center/
@@ -27,7 +23,20 @@ export class PostsService {
     
   }
 
+  getPost(url) {
+    return this.http.get<any>(`${environment.apiUrl}${url}`);
+  }
+
   addNewPost(data) {
     return this.http.post(`${environment.apiUrl}posts`, data);
   }
+
+  likePost(data) {
+    return this.http.post(`${environment.apiUrl}likes`, data);
+  }
+
+  unLikePost(id) {
+    return this.http.delete(`${environment.apiUrl}likes/${id}`);
+  }
+
 }

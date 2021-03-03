@@ -1,0 +1,57 @@
+<section class="section-header app-green-backgound">
+    <div class="heading-box">
+        <h1 class="heading-primary">
+            <span>{{post?.subject}}</span>
+        </h1>
+        <div class="heading-box__group">
+                <div class="heading-box__detail">
+                    <fa-icon [icon]="faCalendar" style="font-size:22px;color:#fff"></fa-icon> 
+                    <span> {{post?.publishDate | date: 'd/M/yy, h:mm a' }} </span>
+                </div>
+                <div class="heading-box__detail">
+                    <fa-icon [icon]="faMapMarkerAlt" style="font-size:22px;color:#fff"></fa-icon>
+                    <span> {{post?.publishDate | date: 'd/M/yy, h:mm a' }} </span> 
+                </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-description">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <ul>
+                    <li>
+                        <div class="heading-box__img">
+                            <img class="rounded-circle" [attr.src]=" post.imageCover ? backEndUrl+post.imageCover : defulPhoto">
+                         </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-12 col-md-6">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pictures">
+    <div class="picture-box">
+        <img class="picture-box__img picture-box__img--1" [src]="post ? backEndUrl+post?.imageCover : '' ">
+    </div>
+    <div class="picture-box">
+        <img class="picture-box__img picture-box__img--2" [src]="post ? backEndUrl+post?.imageCover : '' ">
+    </div>
+    <div class="picture-box">
+        <img class="picture-box__img picture-box__img--3" [src]="post ? backEndUrl+post?.imageCover : '' ">
+    </div>
+</section>
+
+
+<section class="section-map" *ngIf="post">
+    <app-map [posts]="[post]"></app-map>
+</section>
+
+<section class="commints"></section>
+
+
+

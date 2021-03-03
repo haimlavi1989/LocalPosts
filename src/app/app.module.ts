@@ -21,6 +21,10 @@ import { environment } from '../environments/environment';
 import { AuthService } from './feature/auth/auth.service';
 import { PostComponent } from './feature/posts/post/post/post.component';
 import { ErrorInterceptor } from './feature/erorrs/error-interceptor';
+import { DetailComponent } from './feature/posts/detail/detail.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommentsComponent } from './feature/posts/comments/comments.component';
+import { CommentComponent } from './feature/posts/comments/comment/comment.component';
 
 
 @NgModule({
@@ -35,6 +39,9 @@ import { ErrorInterceptor } from './feature/erorrs/error-interceptor';
     ShareComponent,
     PostsComponent,
     PostComponent,
+    DetailComponent,
+    CommentsComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,8 @@ import { ErrorInterceptor } from './feature/erorrs/error-interceptor';
     FormsModule,
     RecaptchaV3Module,
     GoogleMapsModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ],
   providers: [
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: environment.recaptcha_key },

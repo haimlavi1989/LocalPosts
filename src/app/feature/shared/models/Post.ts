@@ -10,5 +10,9 @@ export class Post {
         public publishDate: Date,
         public subject: string,
         public distance: string, 
-        public id: string){}
+        public id: string,
+        public numberOfComments: number,
+        public numberOfLikes: number,
+        public currentUserLike: [{ id: string }] | []
+        ){}
 }

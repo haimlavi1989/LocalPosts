@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="col-10 col-sm-10 col-md-10">
                                     <input type="file" class="hide" accept="image/*" #imageupload
-                                    formControlName="postImage" name="PostImage" (change)="uploadFile($event)">
+                                     name="PostImage" (change)="uploadFile($event.target.files)">
                                     <button type="button" class="btn" (click)="imageupload.click()">
                                         <img src="/assets/images/photo_icon.png" class="image-upload ml-1 mr-1"> Photo
                                     </button>

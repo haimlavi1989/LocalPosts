@@ -1,0 +1,79 @@
+.user-image img {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgb(109, 190, 144);
+  box-shadow: inset 0 1.5px 3px 0 rgba(0, 0, 0, 0.15),
+    0 1.5px 3px 0 rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+}
+
+div.arrow-label-one:before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  width: 0;
+  left: -2.3px;
+  top: 11px;
+  border: 9px solid transparent;
+  border-right-color: #ced4da;
+}
+
+div.arrow-label-two:after {
+  content: " ";
+  height: 0;
+  position: absolute;
+  width: 0;
+  left: 0px;
+  top: 12px;
+  border: 8px solid transparent;
+  border-right-color: white;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: white;
+  border-color: #ced4da;
+  box-shadow: none;
+}
+
+textarea {
+  resize: none;
+}
+
+.triangle {
+  position: relative;
+  background-color: rgb(109, 190, 144);
+  margin-top: 7px;
+}
+
+.triangle:before,
+.triangle:after {
+  content: "";
+  position: absolute;
+  background-color: inherit;
+}
+
+.triangle,
+.triangle:before,
+.triangle:after {
+  width: 0.99em;
+  height: 0.99em;
+  border-top-right-radius: 30%;
+}
+
+.triangle {
+  transform: rotate(272deg) skewX(-30deg) scale(1, 0.866);
+}
+
+.triangle:before {
+  transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707)
+    translate(0, -50%);
+}
+.triangle:after {
+  transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+}
+
+.triangle:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 8px 0 rgb(0 0 0 / 25%), 0 9px 26px 0 rgb(0 0 0 / 50%);
+}

@@ -24,6 +24,7 @@ export class ShareComponent implements OnInit {
   center: google.maps.LatLngLiteral;
   public isLoadingShare: boolean = false;
   selectedSubject: string;
+  fileToUpload: File = null;
 
   constructor(private _categoriesService: CategoriesService,
     private postsService: PostsService,
@@ -52,7 +53,6 @@ export class ShareComponent implements OnInit {
 
   createFormControls() {
     this.postMessage = new FormControl(null, [Validators.required, Validators.minLength(12)]);
-    this.postImage = new FormControl(null, {asyncValidators: []});
     this.postCategorie = new FormControl( this.selectedSubject ? this.selectedSubject : this.categories[0].title, []);;
   }
 
@@ -62,17 +62,12 @@ export class ShareComponent implements OnInit {
     this.minlength12 = "Min length is 12.";
     this.sharePostFormGroup = new FormGroup({
       postMessage: this.postMessage,
-      postImage: this.postImage,
       postCategorie: this.postCategorie
     });
   }
 
-  uploadFile(event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    this.sharePostFormGroup.patchValue({
-      postImage: file
-    });
-    this.sharePostFormGroup.get('postImage').updateValueAndValidity()
+  uploadFile(files: FileList) {
+    this.fileToUpload = files.item(0) as File;
   }
 
   onSubmit() {
@@ -82,7 +77,7 @@ export class ShareComponent implements OnInit {
     data.subject = this.sharePostFormGroup.get('postCategorie').value;
     data.description = this.sharePostFormGroup.get('postMessage').value;
     data.location = { "type": "Point", "coordinates": [this.center.lat, this.center.lng] };
-    data.file = this.sharePostFormGroup.get('postImage').value;
+    data.file = this.fileToUpload;
 
     const postData = new FormData(); 
     postData.append("subject", data.subject);

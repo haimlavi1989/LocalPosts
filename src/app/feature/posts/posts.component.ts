@@ -27,7 +27,7 @@ export class PostsComponent implements OnInit {
     this.isLoadingPosts = true;
     this.postServece.getPosts(1000, [this.center.lat, this.center.lng], 'km').subscribe(
       response => {
-        this.posts = response.data.data;
+        this.posts = response.data;
         this.isLoadingPosts = false;
       }, error => {
         this.isLoadingPosts = false;
