@@ -28,6 +28,11 @@
                                     <button type="button" class="btn" (click)="imageupload.click()">
                                         <img src="/assets/images/photo_icon.png" class="image-upload ml-1 mr-1"> Photo
                                     </button>
+
+                                    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && sharePostFormGroup.get('postImage').valid">
+                                        <img [src]="imagePreview">
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

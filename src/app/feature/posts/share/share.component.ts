@@ -25,6 +25,7 @@ export class ShareComponent implements OnInit {
   public isLoadingShare: boolean = false;
   selectedSubject: string;
   fileToUpload: File = null;
+  imagePreview: string;
 
   constructor(private _categoriesService: CategoriesService,
     private postsService: PostsService,
@@ -53,7 +54,8 @@ export class ShareComponent implements OnInit {
 
   createFormControls() {
     this.postMessage = new FormControl(null, [Validators.required, Validators.minLength(12)]);
-    this.postCategorie = new FormControl( this.selectedSubject ? this.selectedSubject : this.categories[0].title, []);;
+    this.postCategorie = new FormControl( this.selectedSubject ? this.selectedSubject : this.categories[0].title, []);
+    this.postImage = new FormControl(null, { validators: [Validators.required], asyncValidators: [photoType] });
   }
 
   initForm() {
@@ -62,22 +64,37 @@ export class ShareComponent implements OnInit {
     this.minlength12 = "Min length is 12.";
     this.sharePostFormGroup = new FormGroup({
       postMessage: this.postMessage,
-      postCategorie: this.postCategorie
+      postCategorie: this.postCategorie,
+      postImage: this.postImage
     });
   }
 
   uploadFile(files: FileList) {
-    this.fileToUpload = files.item(0) as File;
+    const file = files.item(0) as File
+    // set value of postImage formcontrol with file
+    this.sharePostFormGroup.patchValue({ postImage: file });
+    // update value and run validator 
+    this.sharePostFormGroup.get("postImage").updateValueAndValidity();
+    // set an image preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
+
+
 
   onSubmit() {
 
     this.isLoadingShare = true;
-    const data: shareData = {subject: '', description: '', location: { "type": "Point", "coordinates": [0, 0] }, file: null};
+    const data: shareData = {subject: '', description: '', 
+    location: { "type": "Point", "coordinates": [0, 0] }, file: null};
+    
     data.subject = this.sharePostFormGroup.get('postCategorie').value;
     data.description = this.sharePostFormGroup.get('postMessage').value;
     data.location = { "type": "Point", "coordinates": [this.center.lat, this.center.lng] };
-    data.file = this.fileToUpload;
+    data.file = this.sharePostFormGroup.get('postImage').value;
 
     const postData = new FormData(); 
     postData.append("subject", data.subject);
