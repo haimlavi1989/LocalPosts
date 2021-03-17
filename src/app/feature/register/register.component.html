@@ -10,7 +10,10 @@
                     </div>
 
                     <div class="feedback col-md-12">
-                        <small *ngIf="(fullname.hasError('required') || fullname.hasError('minlength')) && (fullname.dirty || fullname.touched)">
+                        <small *ngIf="fullname.hasError('required') && (fullname.dirty || fullname.touched)">
+                            {{ errorEmptyFields }}
+                        </small>
+                        <small *ngIf="fullname.hasError('minlength')">
                             {{ minlength4 }}
                         </small>
                     </div>      
@@ -45,7 +48,7 @@
                     <div class="row">
                         <div class="feedback col-md-6">
                             <small *ngIf="(password.hasError('required') || password.hasError('minlength')) && (password.dirty || password.touched)">
-                                {{ minlength4 }} 
+                                {{ minlength6 }} 
                             </small>
                         </div>
                         <div class="feedback col-md-6">

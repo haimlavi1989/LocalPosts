@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   age: FormControl;
   errorEmptyFields: string;
   minlength4: string;
+  minlength6: string;
 
   constructor( private authService: AuthService) { }
 
@@ -28,8 +29,8 @@ export class RegisterComponent implements OnInit {
   createFormControls() {
     this.fullname = new FormControl(null, [Validators.required, Validators.minLength(4)]);
     this.email = new FormControl(null, [Validators.required, Validators.email]);
-    this.password = new FormControl(null, [Validators.required, Validators.minLength(4)]);
-    this.confirmpass = new FormControl(null, [Validators.required, Validators.minLength(4), this.checkPasswords.bind(this)]);
+    this.password = new FormControl(null, [Validators.required, Validators.minLength(6)]);
+    this.confirmpass = new FormControl(null, [Validators.required, Validators.minLength(6), this.checkPasswords.bind(this)]);
     this.age = new FormControl(null, [Validators.required, Validators.min(18), Validators.max(120)]);
   }
 
@@ -37,6 +38,7 @@ export class RegisterComponent implements OnInit {
     this.createFormControls();
     this.errorEmptyFields = "Can not be empty!";
     this.minlength4 = "Min length is 4.";
+    this.minlength6 = "Min length is 6.";
     this.registerFormGroup = new FormGroup({
       fullname: this.fullname,
       email: this.email,
