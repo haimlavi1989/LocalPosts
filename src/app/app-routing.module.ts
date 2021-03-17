@@ -11,12 +11,12 @@ import { DetailComponent } from './feature/posts/detail/detail.component';
  const routes: Routes = [
   { path : 'login', component : LoginComponent },
   { path : 'register', component : RegisterComponent },
-  { path : 'categories', component : CategoriesComponent },
+  { path : 'categories', component : CategoriesComponent, canActivate: [AuthGuard]},
   { path : 'postsonmap', component : PostsonmapComponent, canActivate: [AuthGuard]},
-  { path : 'posts', component : PostsComponent },
-  { path : 'posts/:subjectName', component : PostsComponent },
+  { path : 'posts', component : PostsComponent, canActivate: [AuthGuard]},
+  { path : 'posts/:subjectName', component : PostsComponent, canActivate: [AuthGuard]},
   { path : 'postdetail/:id', component : DetailComponent, canActivate: [AuthGuard]},
-  { path: '', redirectTo: 'register', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   ];
 
 @NgModule({
