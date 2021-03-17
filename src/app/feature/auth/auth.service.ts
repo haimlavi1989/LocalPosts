@@ -24,11 +24,9 @@ export class AuthService {
         return this.http.post<any>(`${environment.apiUrl}users/login`, { email, password })
         .subscribe(
             response => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                response["tokenDate"] = new Date();
-                localStorage.setItem('currentUser', JSON.stringify(response));
-                this.handleAuthentication();
-                this.router.navigate(["/categories"]);
+              this.handleLogin(response);
+            }, error => {
+                
             });
     }
 
@@ -54,8 +52,21 @@ export class AuthService {
     signup(data: authData.signupData) {
         this.http
           .post(`${environment.apiUrl}users/signup`, data)
-          .subscribe(response => {
-          });
+          .subscribe(
+            response => {
+              this.handleLogin(response);
+            }, error => {
+              
+            }
+          );
+    }
+
+    handleLogin(response) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        response["tokenDate"] = new Date();
+        localStorage.setItem('currentUser', JSON.stringify(response));
+        this.handleAuthentication();
+        this.router.navigate(["/posts"]);
     }
 
     // on each application startup check if user is authenticated 
