@@ -2,12 +2,20 @@
     <app-share></app-share>
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <app-loading-spinner [visible]="isLoadingPosts"></app-loading-spinner>
-            <app-post *ngFor="let post of posts" [post]="post" 
-              class="card col-md-7 box-shadow mb-4 animate__animated animate__slideInDown">
-            </app-post>   
+                <app-loading-spinner [visible]="isLoadingPosts"></app-loading-spinner>
+                <div *ngIf="posts?.length === 0; then noPosts; else postsList"></div>
+                <ng-template #postsList>
+                    <app-post *ngFor="let post of posts" [post]="post" 
+                     class="card col-md-7 box-shadow mb-4 animate__animated animate__slideInDown">
+                    </app-post>  
+                </ng-template >
+                <ng-template #noPosts>
+                    No Posts at your area.
+                </ng-template >
         </div>                
     </div>
 </div>
+
+
 
  

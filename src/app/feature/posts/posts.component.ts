@@ -16,7 +16,6 @@ export class PostsComponent implements OnInit {
   public isLoadingPosts: boolean = false;
   
   constructor(private postServece: PostsService) { 
-    this.posts = [];
   }
 
   ngOnInit(): void {
