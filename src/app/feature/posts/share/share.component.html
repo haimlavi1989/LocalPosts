@@ -1,6 +1,6 @@
 <div class="share">
    <div class="container mt-3">
-           <form [formGroup]="sharePostFormGroup" (ngSubmit)="onSubmit()">
+           <form [formGroup]="sharePostFormGroup" (ngSubmit)="onSubmit(sharePostFormGroup)">
                 <div class="row justify-content-center">
                     <app-loading-spinner [visible]="isLoadingShare"></app-loading-spinner>
                     <div class="share-box col-md-7 grey-backgound box-shadow animate__animated animate__lightSpeedInRight" 

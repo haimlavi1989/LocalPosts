@@ -2,25 +2,24 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './feature/login/login.component';
 import { RegisterComponent } from './feature/register/register.component';
-import { CategoriesComponent } from './feature/posts/categories/categories.component';
-import { PostsonmapComponent } from './feature/posts/postsonmap/postsonmap.component';
-import { PostsComponent } from './feature/posts/posts.component';
 import { AuthGuard } from "./feature/auth/auth.guard";
-import { DetailComponent } from './feature/posts/detail/detail.component'; 
+import { SettingsComponent } from './feature/settings/settings.component';
+import { SearchComponent } from './feature/search/search.component';
+import { MessagesComponent } from './feature/messages/messages.component';
+    
 
  const routes: Routes = [
   { path : 'login', component : LoginComponent },
   { path : 'register', component : RegisterComponent },
-  { path : 'categories', component : CategoriesComponent, canActivate: [AuthGuard]},
-  { path : 'postsonmap', component : PostsonmapComponent, canActivate: [AuthGuard]},
-  { path : 'posts', component : PostsComponent, canActivate: [AuthGuard]},
-  { path : 'posts/:subjectName', component : PostsComponent, canActivate: [AuthGuard]},
-  { path : 'postdetail/:id', component : DetailComponent, canActivate: [AuthGuard]},
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path : 'settings', component : SettingsComponent, canActivate: [AuthGuard]},
+  { path : 'search', component : SearchComponent, canActivate: [AuthGuard]},
+  { path : 'messages', component : MessagesComponent, canActivate: [AuthGuard]},  
+  { path: '', redirectTo: 'posts', pathMatch: 'full' },
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [AuthGuard]
 })

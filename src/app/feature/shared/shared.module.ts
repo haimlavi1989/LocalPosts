@@ -7,6 +7,9 @@ import { MapComponent } from './components/map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SummaryPipe } from './pipes/summary.pipe';
 import { DistancePipe } from './pipes/distance.pipe';
+import { AlertComponent } from './components/alert/alert.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,15 @@ import { DistancePipe } from './pipes/distance.pipe';
     PaginationComponent,
     MapComponent,
     SummaryPipe,
-    DistancePipe
+    DistancePipe,
+    AlertComponent
   ],
   imports: [
     CommonModule,
     GoogleMapsModule,
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     LoadingSpinnerComponent,
@@ -26,7 +33,11 @@ import { DistancePipe } from './pipes/distance.pipe';
     MapComponent,
     SummaryPipe,
     DistancePipe,
-    CommonModule
+    CommonModule,
+    AlertComponent,
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [],
   providers: []

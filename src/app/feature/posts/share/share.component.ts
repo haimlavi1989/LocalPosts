@@ -85,7 +85,7 @@ export class ShareComponent implements OnInit {
 
 
 
-  onSubmit() {
+  onSubmit(form: FormGroup) {
 
     this.isLoadingShare = true;
     const data: shareData = {subject: '', description: '', 
@@ -105,6 +105,7 @@ export class ShareComponent implements OnInit {
     this.postsService.addNewPost(postData).subscribe(
       response => {
         this.isLoadingShare = false;
+        form.reset();
     }, error => {
         this.isLoadingShare = false;
     });
