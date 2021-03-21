@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../auth/auth.service';
 import { loginData } from "../auth/auth-data.model";
@@ -14,8 +14,12 @@ export class LoginComponent implements OnInit {
   public password: FormControl;
   public errorEmptyFields: string;
   public isLoading: boolean = false;
+  public error: string;
 
-  constructor(private authService:AuthService) { }
+  constructor(
+    private authService:AuthService,
+    private componentFactoryResolver: ComponentFactoryResolver
+    ) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -40,7 +44,20 @@ export class LoginComponent implements OnInit {
     const data: loginData = {email: '', password: ''};
     data.email = this.loginFormGroup.get('email').value
     data.password = this.loginFormGroup.get('password').value
-    this.authService.login(data.email, data.password);
+    this.authService.login(data.email, data.password).subscribe(
+      response => {
+        this.authService.handleLogin(response);
+        this.isLoading = false;
+      }, errorResponse => {
+        this.isLoading = false;
+        this.error = errorResponse?.error?.message;
+      });;
   }
+
+  onHandleError() {
+    this.error = null;
+  }
+
+
   
 }

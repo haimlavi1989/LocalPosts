@@ -3,6 +3,7 @@
   
   <div class="container">
     <div class="row justify-content-center align-items-center">
+      <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
       <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       <div class="login-box col-md-6 col-lg-4 animate__animated animate__bounceInDown" *ngIf="!isLoading">   
         <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()" class="login-form">

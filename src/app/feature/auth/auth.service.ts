@@ -22,12 +22,6 @@ export class AuthService {
 
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}users/login`, { email, password })
-        .subscribe(
-            response => {
-              this.handleLogin(response);
-            }, error => {
-                
-            });
     }
 
     logout() {
@@ -50,15 +44,7 @@ export class AuthService {
     }  
 
     signup(data: authData.signupData) {
-        this.http
-          .post(`${environment.apiUrl}users/signup`, data)
-          .subscribe(
-            response => {
-              this.handleLogin(response);
-            }, error => {
-              
-            }
-          );
+        return this.http.post(`${environment.apiUrl}users/signup`, data);
     }
 
     handleLogin(response) {

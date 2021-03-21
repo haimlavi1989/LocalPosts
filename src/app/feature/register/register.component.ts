@@ -10,15 +10,17 @@ import { AuthService } from "../auth/auth.service";
 })
 export class RegisterComponent implements OnInit {
 
-  registerFormGroup: FormGroup;
-  fullname: FormControl;
-  email: FormControl;
-  password: FormControl;
-  confirmpass: FormControl;
-  age: FormControl;
-  errorEmptyFields: string;
-  minlength4: string;
-  minlength6: string;
+  public registerFormGroup: FormGroup;
+  public fullname: FormControl;
+  public email: FormControl;
+  public password: FormControl;
+  public confirmpass: FormControl;
+  public age: FormControl;
+  public errorEmptyFields: string;
+  public minlength4: string;
+  public minlength6: string;
+  public error: string;
+  public isLoading: boolean = false;
 
   constructor( private authService: AuthService) { }
 
@@ -55,7 +57,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.isLoading = true;
     const data: signupData = {name: '', email: '', password: '', passwordConfirm: '', age: 0};
     data.name = this.registerFormGroup.get('fullname').value;
     data.email = this.registerFormGroup.get('email').value;
@@ -63,7 +65,18 @@ export class RegisterComponent implements OnInit {
     data.passwordConfirm = this.registerFormGroup.get('confirmpass').value;
     data.age = this.registerFormGroup.get('age').value;
 
-    this.authService.signup(data);
+    this.authService.signup(data).subscribe(
+      response => {
+        this.authService.handleLogin(response);
+        this.isLoading = false;
+      }, errorResponse => {
+        this.isLoading = false;
+        this.error = errorResponse?.error?.message;
+      });;
+  }
+
+  onHandleError() {
+    this.error = null;
   }
   
 

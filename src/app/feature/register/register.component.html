@@ -1,7 +1,9 @@
 <div class="register">
     <div class="container">
       <div class="row justify-content-center align-items-center">
-        <div class="register-box col-md-6 col-lg-4 animate__animated animate__bounceInDown">   
+        <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
+        <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>  
+        <div class="register-box col-md-6 col-lg-4 animate__animated animate__bounceInDown" *ngIf="!isLoading">   
           <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()" class="register-form">
               <h3 class="text-center form-title">register</h3>
               <div class="form-group row">
