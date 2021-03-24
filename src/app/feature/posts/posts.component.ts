@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from './../shared/models/Post';
 import { PostsService } from './../../feature/shared/services/posts/posts.service';
-import { catchError, map } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
+import { PostService } from './../../feature/posts/post.service';
 
 @Component({
   selector: 'app-posts',
@@ -12,39 +11,20 @@ import { environment } from '../../../environments/environment';
 export class PostsComponent implements OnInit {
 
   posts: Post[];
-  center: google.maps.LatLngLiteral;
   public isLoadingPosts: boolean = false;
   
-  constructor(private postServece: PostsService) { 
+  constructor(
+    private postService: PostService,
+    ) { 
   }
 
   ngOnInit(): void {
-    this.getUserLocation();
-  }
 
-  getNearbyPosts() {
-    this.isLoadingPosts = true;
-    this.postServece.getPosts(1000, [this.center.lat, this.center.lng], 'km').subscribe(
-      response => {
-        this.posts = response.data;
-        this.isLoadingPosts = false;
-      }, error => {
-        this.isLoadingPosts = false;
-      })
+      this.posts = this.postService.getPosts();
+      this.postService.postsChanged.subscribe( response => {
+        this.posts = response;
+      });
   }
-
-  getUserLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-        this.getNearbyPosts();
-      })
-    }  
-  }
-
 
 
 }

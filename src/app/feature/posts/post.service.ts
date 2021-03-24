@@ -2,42 +2,83 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { Post } from '../shared/models/Post';
+import { PostsService } from './../../feature/shared/services/posts/posts.service';
 
 
 @Injectable()
 export class PostService {
 
-  PostsChanged = new Subject<Post[]>();
+  public postsChanged = new Subject<Post[]>();
+  private posts: Post[];
+  private center: google.maps.LatLngLiteral; 
 
-  private posts: Post[] = [];
+  constructor(
+    private postsService: PostsService
+  ) {
+    this.initPosts();
+  }
 
-  constructor() {}
+  initPosts() {
+    if (!this.posts) {
+      this.getUserLocation();
+    }
+  }
 
   setPosts(posts: Post[]) {
     this.posts = posts;
-    this.PostsChanged.next(this.posts.slice());
+    this.postsChanged.next(this.posts?.slice());
   }
 
   getPosts() {
-    return this.posts.slice();
+    if (!this.posts) {
+      return
+    }
+    return this.posts?.slice();
   }
 
-  getpost(index: number) {
-    return this.posts[index];
+  getPost(id: string) {
+
+    if (!this.posts) {
+      return
+    }
+    const postIndex = this.posts.findIndex(post => post.id === id);
+    return this.posts[postIndex]; 
   }
 
   addPost(Post: Post) {
     this.posts.push(Post);
-    this.PostsChanged.next(this.posts.slice());
+    this.postsChanged.next(this.posts?.slice());
   }
 
   updatePost(index: number, newPost: Post) {
     this.posts[index] = newPost;
-    this.PostsChanged.next(this.posts.slice());
+    this.postsChanged.next(this.posts?.slice());
   }
 
   deletePost(index: number) {
-    this.posts.splice(index, 1);
-    this.PostsChanged.next(this.posts.slice());
+    this.posts?.splice(index, 1);
+    this.postsChanged.next(this.posts?.slice());
+  }
+
+  private getNearbyPosts() {
+
+    this.postsService.getPosts(1000, [this.center.lat, this.center.lng], 'km').subscribe(
+      response => {
+        this.setPosts(response.data)
+      }, error => {
+
+      })
+  }
+
+  private getUserLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+        this.getNearbyPosts();
+      })
+    }  
   }
 }

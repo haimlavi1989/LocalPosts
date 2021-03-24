@@ -3,6 +3,9 @@ import posts from '../../data/posts/posts.json';
 import { Post } from './../../models/Post';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
+import { PostService } from '../../../posts/post.service';
+import { tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,9 @@ export class PostsService {
   private posts: Post[];
   private unit: string = 'km';
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+  ) {
     this.posts = posts;
   }
 
@@ -20,7 +25,6 @@ export class PostsService {
     return this.http.get<any>(`
     ${environment.apiUrl}posts/distances/${distance}/center/
     ${[coordinates[0], coordinates[1]]}/unit/${unit}`);
-    
   }
 
   getPost(url) {

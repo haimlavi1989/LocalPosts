@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../shared/models/Post';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { PostsService } from './../../../feature/shared/services/posts/posts.service';
-import { switchMap } from 'rxjs/operators';
-import { Observable, combineLatest } from 'rxjs';
+import { ActivatedRoute, Params, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { faCalendar, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faMapMarkerAlt, faThumbsUp, faComments } from '@fortawesome/free-solid-svg-icons';
+import { PostService } from './../post.service';
 
 @Component({
   selector: 'app-detail',
@@ -15,16 +14,18 @@ import { faCalendar, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 export class DetailComponent implements OnInit {
 
   post: Post;
+  id: string;
   switched: Observable<any>;
   backEndUrl: string;
   defulPhoto: string;
   faCalendar = faCalendar;
   faMapMarkerAlt = faMapMarkerAlt;
+  faThumbsUp = faThumbsUp;
+  faComments = faComments;
 
   constructor(
-    private router: Router,
     private activatedRoute: ActivatedRoute,
-    private postsService: PostsService
+    private postService: PostService
     ) { 
       this.backEndUrl = environment.backEndUrl;
       this.defulPhoto = environment.appDefulPhoto;
@@ -32,19 +33,16 @@ export class DetailComponent implements OnInit {
 
     ngOnInit() {
 
-      this.switched = this.activatedRoute.paramMap.pipe(
-        switchMap( (params: ParamMap) => {
-          return this.postsService.getPost(`posts/${params.get('id')}`);
-        })
-      )
+      this.postService.postsChanged.subscribe( response => {
+        this.post = this.postService.getPost(this.id);
+      }); 
 
-      this.switched.subscribe(
-        response => {
-          this.post = response.data;
-          console.log(this.post, "details")
-        }, error => {
-        }
-      )
+      this.activatedRoute.params.subscribe( (params: Params) => {
+            this.id = params['id'];
+            this.post = this.postService.getPost(this.id);
+          }
+        );
     }
+
 }
 

@@ -6,11 +6,11 @@
         <div class="heading-box__group">
                 <div class="heading-box__detail">
                     <fa-icon [icon]="faCalendar" style="font-size:22px;color:#fff"></fa-icon> 
-                    <span> {{post?.publishDate | date: 'd/M/yy, h:mm a' }} </span>
+                    <span> {{ post?.publishDate | date: 'd/M/yy, h:mm a' }} </span>
                 </div>
                 <div class="heading-box__detail">
                     <fa-icon [icon]="faMapMarkerAlt" style="font-size:22px;color:#fff"></fa-icon>
-                    <span> {{post?.publishDate | date: 'd/M/yy, h:mm a' }} </span> 
+                    <span> {{ post?.distance | distance }} </span> 
                 </div>
         </div>
     </div>
@@ -19,33 +19,38 @@
 <section class="section-description">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <ul>
-                    <li>
-                        <div class="heading-box__img">
-                            <img class="rounded-circle" [attr.src]=" post.imageCover ? backEndUrl+post.imageCover : defulPhoto">
-                         </div>
-                    </li>
-                </ul>
+            <div class="col-6 col-sm-6 col-md-6 text-center part1">
+                <div class="overview-box">
+                    <h2 class="heading-secondary"> Quick facts </h2>
+                    <div class="overview-box__group">
+                        <div class="overview-box__detail">
+                            <fa-icon [icon]="faThumbsUp" 
+                                [ngStyle]="{ 'color' : '#6dbe90' }">
+                            </fa-icon>
+                            <span class="overview-box__label"> number of likes </span>
+                            <span class="overview-box__text"> {{ post?.numberOfLikes }} </span>
+                        </div>
+                        <div class="overview-box__detail">
+                            <fa-icon [icon]="faComments" 
+                                [ngStyle]="{ 'color' : '#6dbe90' }">
+                            </fa-icon>
+                            <span class="overview-box__label"> number of comments </span>
+                            <span class="overview-box__text"> {{ post?.numberOfComments }} </span>
+                        </div>
+                    </div>
+                </div>    
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="col-6 col-sm-6 col-md-6 text-center part2">
+                 <div class="heading-box__img">
+                    <img class="rounded-circle" [attr.src]=" post?.imageCover ? backEndUrl+post.imageCover : defulPhoto">                
+                 </div>
+                 <div class="overview-box__detail">
+                    {{ post?.description }}
+                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<section class="section-pictures">
-    <div class="picture-box">
-        <img class="picture-box__img picture-box__img--1" [src]="post ? backEndUrl+post?.imageCover : '' ">
-    </div>
-    <div class="picture-box">
-        <img class="picture-box__img picture-box__img--2" [src]="post ? backEndUrl+post?.imageCover : '' ">
-    </div>
-    <div class="picture-box">
-        <img class="picture-box__img picture-box__img--3" [src]="post ? backEndUrl+post?.imageCover : '' ">
-    </div>
-</section>
-
 
 <section class="section-map" *ngIf="post">
     <app-map [posts]="[post]"></app-map>

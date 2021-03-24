@@ -11,6 +11,7 @@ import { ShareComponent } from './../../feature/posts/share/share.component';
 import { PostsComponent } from './../../feature/posts/posts.component'
 import { SharedModule } from '../shared/shared.module';
 import { PostsRoutingModule } from './posts-routing.module';
+import { PostService } from './post.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,9 @@ import { PostsRoutingModule } from './posts-routing.module';
     RouterModule,
     SharedModule,
     PostsRoutingModule,
+  ],
+  providers: [
+    PostService
   ],
 })
 export class PostsModule {}

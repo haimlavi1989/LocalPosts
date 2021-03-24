@@ -28,3 +28,13 @@
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+
+a {
+  color: #007bff;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}

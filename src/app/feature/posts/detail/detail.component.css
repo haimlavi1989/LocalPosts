@@ -73,14 +73,14 @@
   box-shadow: inset 0 1.5px 3px 0 rgb(0 0 0 / 15%),
     0 1.5px 3px 0 rgb(0 0 0 / 15%);
   background-color: #fff;
+  margin-bottom: 5%;
 }
 
 .heading-box__detail:not(:last-child) {
-  margin-right: 4rem;
+  margin-right: 1rem;
 }
 
 .section-description {
-  background-color: #fcfcfc;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -124,8 +124,47 @@
   padding-bottom: 27%;
 }
 
+.heading-secondary {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right, #7dd56f, #28b487);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.1rem;
+  line-height: 1.3;
+  display: inline-block;
+  margin-bottom: 2.5rem;
+}
+
+.overview-box__label {
+  font-weight: 700;
+  margin-right: 0.5rem;
+  margin-left: 0.25rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.overview-box__text {
+  text-transform: capitalize;
+}
+
+.section-map {
+  clip-path: polygon(
+    0 var(--section-rotate),
+    120% 0,
+    100% calc(100% - var(--section-rotate)),
+    0 100%
+  );
+  -webkit-clip-path: polygon(
+    0 var(--section-rotate),
+    120% 0,
+    100% calc(100% - var(--section-rotate)),
+    0 100%
+  );
+}
+
 .section-map {
   position: relative;
   height: 65rem;
-  margin-top: calc(0px - var(--section-rotate));
 }
