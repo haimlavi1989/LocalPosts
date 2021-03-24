@@ -15,14 +15,3 @@ reactive user experience with nice & responsive design using Bootstrap.
 ## Demo application
 
 The application is served **<a href="https://localposts.web.app/">here</a>**
-
-## Installation and Running the App
-
-Clone the repo, then: 
-
-npm install
-ng serve
-
-The app will be served at `localhost:4200`.
-
-## Local Setup
