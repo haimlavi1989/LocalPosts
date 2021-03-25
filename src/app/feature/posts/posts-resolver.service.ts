@@ -22,6 +22,7 @@ export class PostsResolverService implements Resolve<any> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    this.postService.initPosts();
   }
 
 }
