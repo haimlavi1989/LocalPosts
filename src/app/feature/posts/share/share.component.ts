@@ -36,7 +36,7 @@ export class ShareComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserLocation();
-    this.selectedSubject = this.activatedRoute.snapshot.params.subjectName;
+    this.selectedSubject = this.activatedRoute.snapshot.queryParams.subjectName;
     this.categories = this._categoriesService.getCategories();    
     this.initForm();
   }

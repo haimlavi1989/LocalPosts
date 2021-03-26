@@ -33,10 +33,6 @@ export class PostComponent implements OnInit {
     this.initFontIcons();
   }
 
-  handleMoreDetails(event: Post) {
-    this.router.navigate(['/postdetail', event.id]);
-  }
-
   initFontIcons() { 
     this.faCalendar = faCalendar;
     this.faMapMarkerAlt = faMapMarkerAlt;
