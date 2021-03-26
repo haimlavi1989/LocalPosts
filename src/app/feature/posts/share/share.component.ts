@@ -6,6 +6,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { photoType } from "../../shared/validators/photo-type.validator"
 import { PostsService } from './../../../feature/shared/services/posts/posts.service';
 import { shareData } from './share-data.model';
+import { PostService } from '../../posts/post.service';
+
 
 @Component({
   selector: 'app-share',
@@ -30,6 +32,7 @@ export class ShareComponent implements OnInit {
   constructor(private _categoriesService: CategoriesService,
     private postsService: PostsService,
     private route: ActivatedRoute,
+    private postService: PostService,
     private activatedRoute: ActivatedRoute ) { 
     this.categories = [];
   }
@@ -102,13 +105,21 @@ export class ShareComponent implements OnInit {
     postData.append("location", JSON.stringify(data.location));
     postData.append("file", data.file);
 
-    this.postsService.addNewPost(postData).subscribe(
+    this.postService.addPost(postData);
+    this.postService.postsChanged.subscribe(
       response => {
         this.isLoadingShare = false;
         form.reset();
     }, error => {
         this.isLoadingShare = false;
     });
+/*     this.postsService.addNewPost(postData).subscribe(
+      response => {
+        this.isLoadingShare = false;
+        form.reset();
+    }, error => {
+        this.isLoadingShare = false;
+    }); */
   }
 
 }

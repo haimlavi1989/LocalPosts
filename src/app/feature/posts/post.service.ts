@@ -4,6 +4,10 @@ import { Subject } from 'rxjs';
 import { Post } from '../shared/models/Post';
 import { PostsService } from './../../feature/shared/services/posts/posts.service';
 
+interface Response {
+  status: number;
+  data: Post;
+}
 
 @Injectable()
 export class PostService {
@@ -45,9 +49,24 @@ export class PostService {
     return this.posts[postIndex]; 
   }
 
-  addPost(Post: Post) {
-    this.posts.push(Post);
-    this.postsChanged.next(this.posts?.slice());
+  addPost(Post: FormData) {
+
+    this.postsService.addNewPost(Post).subscribe(
+      (response: Response) => {
+
+        const extraData = { 
+          'numberOfLikes': 0,
+          'numberOfComments': 0,
+          'distance': '0',
+          'currentUserLike': []
+        }
+        let postObj = Object.assign(response.data, extraData);
+        this.posts.unshift(postObj);
+        this.postsChanged.next(this.posts?.slice());
+    }, error => {
+
+    });
+
   }
 
   updatePost(index: number, newPost: Post) {
