@@ -18,12 +18,10 @@ const routes: Routes = [
     { path : 'posts/:subjectName',
       component : PostsComponent,
       canActivate: [AuthGuard],
-      resolve: [PostsResolverService]
     },
     { path : 'postdetail/:id',
       component : DetailComponent,
       canActivate: [AuthGuard],
-      resolve: [PostsResolverService]
     },
 ];
 
