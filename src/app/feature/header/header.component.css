@@ -32,3 +32,11 @@
 .header .navbar-nav .nav-item {
   margin-right: 10px;
 }
+
+.header .navbar-nav .nav-item .nav-link.active {
+  border-color: transparent;
+  border-bottom-color: red;
+  border-style: solid;
+  border-width: 0.9px;
+  margin: -1.5px;
+}
