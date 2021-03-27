@@ -6,10 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DistancePipe implements PipeTransform {
 
   transform(distance: string, unit?: string): string {
-    if (!distance) {
-      return null;
-    }
-
+    
     let roundDistance: number = Math.round(+distance);
     let distanceWithUnit: string;
     if (roundDistance >= 0 && roundDistance < 1000) {
