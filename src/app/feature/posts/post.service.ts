@@ -81,7 +81,7 @@ export class PostService {
 
   private getNearbyPosts() {
 
-    this.postsService.getPosts(1000, [this.center.lat, this.center.lng], 'km').subscribe(
+    this.postsService.getPosts(60000, [this.center.lat, this.center.lng], 'km').subscribe(
       response => {
         this.setPosts(response.data)
       }, error => {

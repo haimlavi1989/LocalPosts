@@ -36,7 +36,7 @@ export class PostsonmapComponent implements OnInit {
   }
 
   getNearbyPosts() {
-    this.postServece.getPosts(1000, [this.center.lat, this.center.lng], 'km').subscribe(
+    this.postServece.getPosts(60000, [this.center.lat, this.center.lng], 'km').subscribe(
       response => {
         this.posts = response.data;
       })
