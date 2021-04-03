@@ -12,7 +12,8 @@ export class DistancePipe implements PipeTransform {
     if (roundDistance >= 0 && roundDistance < 1000) {
       distanceWithUnit = `${roundDistance}${'M'}`; 
     } else if ( roundDistance >= 1000 ) {
-      distanceWithUnit = `${roundDistance}${'KM'}`;  
+      let kmDistance = (roundDistance / 1000);
+      distanceWithUnit = `${Math.round(kmDistance)}${'KM'}`;  
     }
     return distanceWithUnit;
   }
