@@ -18,6 +18,8 @@ import { SettingsComponent } from './feature/settings/settings.component';
 import { SearchComponent } from './feature/search/search.component';
 import { MessagesComponent } from './feature/messages/messages.component';
 import { PostsModule } from './feature/posts/posts.module';
+import { SettingsModule } from './feature/settings/settings.module';
+
 
 @NgModule({
   declarations: [

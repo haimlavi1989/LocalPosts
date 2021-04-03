@@ -1,0 +1,40 @@
+.side__menu {
+  background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
+  background-color: #fff;
+  min-height: 80vh;
+  border-radius: 3px;
+  padding: 4rem 0;
+}
+
+.view__content {
+  background-color: #f7f7f7;
+}
+
+.side-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #fff;
+}
+
+.side-nav a,
+.side-nav a:visited {
+  padding: 1rem 4rem;
+  color: #fff;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-decoration: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.active,
+.side-nav li:hover {
+  border-left: 4px solid #fff !important;
+}

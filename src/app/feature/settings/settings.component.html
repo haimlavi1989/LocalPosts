@@ -1,7 +1,29 @@
 <div class="settings">
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <img src="/assets/images/under_construction.png" alt="under construction">
+            <div class="col-4 col-sm-4 col-md-4 p-0">
+                <div class="side__menu">
+                    <ul class="side-nav">
+                        <li>
+                            <a>
+                                <fa-icon [icon]="fauser" style="color:#fff"></fa-icon>
+                                <span class="ml-3"> user details </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <fa-icon [icon]="falock" style="color:#fff"></fa-icon>
+                                <span class="ml-3"> password </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-8 col-sm-8 col-md-8 p-0">
+                <div class="view__content">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
         </div>                
     </div>
 </div>
