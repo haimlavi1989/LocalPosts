@@ -13,6 +13,17 @@
                                 <div class="col-9 col-sm-10 col-md-10 arrow-label-one arrow-label-two">
                                     <textarea class="form-control" placeholder="whats new?" rows="3"
                                      formControlName="postMessage" name="postMessage"></textarea>
+                                     <div class="feedback col-9 col-sm-10 col-md-10">
+                                        <small *ngIf="postMessage.hasError('required') && (postMessage.dirty || postMessage.touched)">
+                                           {{ errorEmptyFields }}
+                                        </small>
+                                        <small *ngIf="postMessage.hasError('minlength')">
+                                            {{ minlength12 }}
+                                        </small>
+                                        <small *ngIf="postMessage.hasError('maxlength')">
+                                            {{ maxLength350 }}
+                                        </small>  
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +39,11 @@
                                     <button type="button" class="btn" (click)="imageupload.click()">
                                         <img src="/assets/images/photo_icon.png" class="image-upload ml-1 mr-1"> Photo
                                     </button>
-
+                                    <div class="feedback col-9 col-sm-10 col-md-10">
+                                        <small *ngIf="">
+                                           {{ errorEmptyFields }}
+                                        </small>
+                                    </div>
                                     <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && sharePostFormGroup.get('postImage').valid">
                                         <img [src]="imagePreview">
                                     </div>

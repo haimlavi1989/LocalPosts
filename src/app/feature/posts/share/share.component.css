@@ -67,3 +67,7 @@ div.arrow-label-two:after {
   border-color: #ced4da;
   box-shadow: none;
 }
+
+.feedback {
+  color: red;
+}

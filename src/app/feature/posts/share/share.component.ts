@@ -23,6 +23,7 @@ export class ShareComponent implements OnInit {
   postCategorie: FormControl;
   errorEmptyFields: string;
   minlength12: string;
+  maxLength350: string;
   center: google.maps.LatLngLiteral;
   public isLoadingShare: boolean = false;
   selectedSubject: string;
@@ -56,7 +57,7 @@ export class ShareComponent implements OnInit {
   }
 
   createFormControls() {
-    this.postMessage = new FormControl(null, [Validators.required, Validators.minLength(12)]);
+    this.postMessage = new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(350)]);
     this.postCategorie = new FormControl( this.selectedSubject ? this.selectedSubject : this.categories[0].title, []);
     this.postImage = new FormControl(null, { validators: [Validators.required], asyncValidators: [photoType] });
   }
@@ -65,6 +66,7 @@ export class ShareComponent implements OnInit {
     this.createFormControls();
     this.errorEmptyFields = "Can not be empty!";
     this.minlength12 = "Min length is 12.";
+    this.maxLength350 = "Max lenght is 350"
     this.sharePostFormGroup = new FormGroup({
       postMessage: this.postMessage,
       postCategorie: this.postCategorie,
@@ -73,6 +75,7 @@ export class ShareComponent implements OnInit {
   }
 
   uploadFile(files: FileList) {
+    console.log(files);
     const file = files.item(0) as File
     // set value of postImage formcontrol with file
     this.sharePostFormGroup.patchValue({ postImage: file });
