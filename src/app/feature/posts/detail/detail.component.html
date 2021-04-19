@@ -42,7 +42,8 @@
             </div>
             <div class="col-6 col-sm-6 col-md-6 text-center part2">
                  <div class="heading-box__img">
-                    <img class="rounded-circle" [attr.src]=" post?.imageCover ? backEndUrl+post.imageCover : defulPhoto">                
+                    <img class="rounded-circle" [attr.src]=" post?.imageCover ? backEndUrl+post.imageCover : defulPhoto"
+                    (error)="errorImgHandler($event)">                
                  </div>
                  <div class="overview-box__detail">
                     {{ post?.description }}
@@ -56,7 +57,9 @@
     <app-map [posts]="[post]"></app-map>
 </section>
 
-<section class="commints"></section>
+<section class="section-commints">
+    <app-comments [commentEvent]="commentEvent" [postId]="id"></app-comments>
+</section>
 
 
 

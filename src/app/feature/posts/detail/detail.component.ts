@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Output, EventEmitter } from '@angular/core';
 import { Post } from '../../shared/models/Post';
 import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -11,7 +11,9 @@ import { PostService } from './../post.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, AfterViewChecked {
+
+  @Output('commentEvent') commentEvent = new EventEmitter<boolean>();
 
   post: Post;
   id: string;
@@ -32,7 +34,6 @@ export class DetailComponent implements OnInit {
     }
 
     ngOnInit() {
-
       this.postService.postsChanged.subscribe( response => {
         this.post = this.postService.getPost(this.id);
       }); 
@@ -41,7 +42,17 @@ export class DetailComponent implements OnInit {
             this.id = params['id'];
             this.post = this.postService.getPost(this.id);
           }
-        );
+        ); 
+    }
+
+    ngAfterViewChecked() {
+      this.commentEvent.emit(true);
+    }
+
+    // fix free server deleted images
+    errorImgHandler(event) {
+      event.target.src = this.defulPhoto;
+      event.target.onerror=null;
     }
 
 }

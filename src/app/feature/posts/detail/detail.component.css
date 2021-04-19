@@ -150,6 +150,8 @@
 }
 
 .section-map {
+  position: relative;
+  height: 40rem;
   clip-path: polygon(
     0 var(--section-rotate),
     120% 0,
@@ -164,7 +166,24 @@
   );
 }
 
-.section-map {
-  position: relative;
-  height: 65rem;
+.section-commints {
+  transform: translateY(-100px);
+}
+
+.section-commints {
+  padding: 3rem;
+  background-color: rgb(253, 242, 182);
+  height: 25rem;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--section-rotate)),
+    0 100%
+  );
+  -webkit-clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--section-rotate)),
+    0 100%
+  );
 }
