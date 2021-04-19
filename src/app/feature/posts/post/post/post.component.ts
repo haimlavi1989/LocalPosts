@@ -81,4 +81,10 @@ export class PostComponent implements OnInit {
     this.post.numberOfLikes = --this.post.numberOfLikes;
   }
 
+  // fix free server deleted images
+  errorImgHandler(event) {
+    event.target.src = this.defulPhoto;
+    event.target.onerror=null;
+  }
+
 }
